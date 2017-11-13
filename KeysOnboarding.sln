@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUD_App_1", "CRUD_App_1\CRUD_App_1.csproj", "{8CD9E67E-12E7-46E0-A992-2D883A4763D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUD_App_2", "CRUD_App_2\CRUD_App_2.csproj", "{678198F7-A711-4466-8593-2BB2F8A54453}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUD_App_3", "CRUD_App_3\CRUD_App_3.csproj", "{D03B2F0A-F222-48F6-A2E4-E1D1D63A0D6A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8CD9E67E-12E7-46E0-A992-2D883A4763D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CD9E67E-12E7-46E0-A992-2D883A4763D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CD9E67E-12E7-46E0-A992-2D883A4763D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CD9E67E-12E7-46E0-A992-2D883A4763D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{678198F7-A711-4466-8593-2BB2F8A54453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{678198F7-A711-4466-8593-2BB2F8A54453}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{678198F7-A711-4466-8593-2BB2F8A54453}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{678198F7-A711-4466-8593-2BB2F8A54453}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D03B2F0A-F222-48F6-A2E4-E1D1D63A0D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D03B2F0A-F222-48F6-A2E4-E1D1D63A0D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D03B2F0A-F222-48F6-A2E4-E1D1D63A0D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D03B2F0A-F222-48F6-A2E4-E1D1D63A0D6A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4AA459C-D326-4072-A5C1-70D922A38024}
+	EndGlobalSection
+EndGlobal

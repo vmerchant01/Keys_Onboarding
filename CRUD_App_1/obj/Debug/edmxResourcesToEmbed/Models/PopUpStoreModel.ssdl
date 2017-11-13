@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PopUpStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" Nullable="false" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="Age" Type="int" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductSold">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="StoreId" Type="int" Nullable="false" />
+    <Property Name="DateSold" Type="datetime2" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Store">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" Nullable="false" />
+    <Property Name="Address" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PopUpStore.dbo.Sales' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Sales">
+    <Key>
+      <PropertyRef Name="Product_Name" />
+      <PropertyRef Name="Customer_Name" />
+    </Key>
+    <Property Name="Product_Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Customer_Name" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_CustomerID">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="ProductSold" Type="Self.ProductSold" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductSold">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductID">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductSold" Type="Self.ProductSold" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductSold">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoreID">
+    <End Role="Store" Type="Self.Store" Multiplicity="1" />
+    <End Role="ProductSold" Type="Self.ProductSold" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductSold">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PopUpStoreModelStoreContainer">
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductSold" EntityType="Self.ProductSold" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sales" EntityType="Self.Sales" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Sales].[Product_Name] AS [Product_Name], 
+    [Sales].[Customer_Name] AS [Customer_Name]
+    FROM [dbo].[Sales] AS [Sales]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_CustomerID" Association="Self.FK_CustomerID">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="ProductSold" EntitySet="ProductSold" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductID" Association="Self.FK_ProductID">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductSold" EntitySet="ProductSold" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoreID" Association="Self.FK_StoreID">
+      <End Role="Store" EntitySet="Store" />
+      <End Role="ProductSold" EntitySet="ProductSold" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

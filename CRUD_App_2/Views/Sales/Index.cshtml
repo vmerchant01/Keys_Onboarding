@@ -1,0 +1,26 @@
+﻿@model IEnumerable<CRUD_App_2.Models.SaleViewModel>
+
+@{
+    ViewBag.Title = "Sale Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>Product Name</th>
+        <th>Customer Name</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Name)
+        </td>
+    </tr>
+}
+
+</table>
