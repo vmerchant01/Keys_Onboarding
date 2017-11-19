@@ -1,0 +1,103 @@
+﻿@*@model IEnumerable<CRUD_App_3.Models.CustomerViewModel>
+
+@{
+    string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+
+    
+}*@
+
+@{
+    ViewBag.Title = "Customer Details";
+}
+
+<h2>@ViewBag.Title</h2>
+<p>
+    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#newCustomer" id="add" >Add Customer</button>
+</p>       
+
+<!--Modal-->
+<div id="newCustomer" class="modal form-horizontal" tabindex="-1" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="Customer">Customer</h4>
+            </div>
+            <div class="modal-body" id="myModalBodyDiv">
+                <form class="form-horizontal va-form" id="customerDetailsForm" name="customerDetails">
+                    <input type="hidden" name="hdnField" id="hdnField" value=""/> 
+                    @*<fieldset>*@
+                        @*<legend>Legend</legend>*@
+                        <div class="form-group">
+                            <label for="customerName">Name</label>
+                            <input name="name" class="form-control col-xs-10" id="customerInputName" aria-describedby="nameHelp" placeholder="Enter name" type="text">
+                            <small id="nameHelp" class="form-text text-muted"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerAge">Age</label>
+                            <input name="age" class="form-control" id="customerInputAge" aria-describedby="ageHelp" placeholder="Enter age" type="text">
+                            <small id="ageHelp" class="form-text text-muted"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerAddres">Address</label>
+                            <input name="address" class="form-control" id="customerInputAddress" aria-describedby="addressHelp" placeholder="Enter address" type="text">
+                            <small id="addressHelp" class="form-text text-muted"></small>
+                        </div>
+                     @*</fieldset>*@
+
+                    <div class="modal-footer">                        
+                        <button id="submit" type="submit" class="btn btn- primary">Temp</button>
+                        <a class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    </div>
+                </form>
+            </div>  
+        </div>
+    </div>
+
+</div>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            Age
+        </th>
+        <th>Action</th>
+    </tr>  
+
+    <tbody id="sortable" data-bind="foreach: customerViewModel">
+        <tr>
+            <td data-bind="text: Name"></td>
+            <td data-bind="text: Address"></td>
+            <td data-bind="text: Age"></td>
+            <td>
+                <button data-bind="click: setId(Id)" type="button" class="btn btn-warning btn-sm" id="edit" > Edit</button> |
+                <button type="button" class="btn btn-info btn-sm" id="detail" onclick="setId(Id)"> Details</button> |
+                <button type="button" class="btn btn-danger btn-sm" id="delete" onclick="setId(Id)"> Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!-------------------------------------------------------------------------------------------------------------------->
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/utility.js"></script>
+<script src="~/Scripts/customer.js"></script>
+<script>
+    window.onload = function () { loadCustomerData() };
+    function loadCustomerData() {
+        console.log("Hi");
+        customerViewModel = new Object();
+        $.getJSON("/Customers/GetCustomers", function (data) {
+            customerViewModel = data;
+            console.log(customerViewModel);
+            ko.applyBindings(customerViewModel);
+        })
+    }
+    
+</script>
